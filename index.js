@@ -29,6 +29,12 @@ app.get("/triggerDownload/:download", (req, res) => {
     .catch((e) => console.log(e));
 });
 
+const port = process.env.PORT || 8080;
+
+app.listen(port, () => {
+  console.log("Express server listening on port", port);
+});
+
 // var allowedOrigins = ["http://localhost:8081", "http://yourapp.com"];
 // app.use(
 //   cors({
@@ -47,4 +53,4 @@ app.get("/triggerDownload/:download", (req, res) => {
 //   })
 // );
 
-// app.listen(process.env.PORT || 8082);
+// app.listen(process.env.PORT || 8000);
