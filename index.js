@@ -1,19 +1,20 @@
 const express = require("express");
-const app = express();
+// const app = express();
 require("dotenv").config();
 const axios = require("axios");
 const cors = require("cors");
+const app = express().use("https://mood-colors-api.herokuapp.com/", cors());
 
 const KEY = process.env.UNSPLASH_KEY;
 const ENDPT = "https://api.unsplash.com/search/photos?page=1&query=";
 
-const corsOptions = { origin: "https://mood-colors-api.herokuapp.com/" };
+// const corsOptions = { origin: "https://mood-colors-api.herokuapp.com/" };
 
-app.get("/", cors(corsOptions), (req, res) => {
+app.get("/", (req, res) => {
   res.send("Mood colors api running");
 });
 
-app.get("/:search", cors(corsOptions), (req, res) => {
+app.get("/:search", (req, res) => {
   const search = req.params.search;
   const url = `${ENDPT + search}&client_id=${KEY}`;
   axios
@@ -27,7 +28,7 @@ app.get("/:search", cors(corsOptions), (req, res) => {
     });
 });
 
-app.get("/triggerDownload/:download", cors(corsOptions), (req, res) => {
+app.get("/triggerDownload/:download", (req, res) => {
   const url = `${download}?client_id=${KEY}`;
   axios
     .get(url)
@@ -37,17 +38,17 @@ app.get("/triggerDownload/:download", cors(corsOptions), (req, res) => {
 
 const port = process.env.PORT || 8080;
 
-app.use((req, res, next) => {
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://mood-colors.herokuapp.com/"
-  );
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header(
+//     "Access-Control-Allow-Origin",
+//     "https://mood-colors.herokuapp.com/"
+//   );
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   next();
+// });
 
 app.listen(port, () => {
   console.log("Express server listening on port", port);
