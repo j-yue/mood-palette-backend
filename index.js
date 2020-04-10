@@ -7,11 +7,13 @@ const cors = require("cors");
 const KEY = process.env.UNSPLASH_KEY;
 const ENDPT = "https://api.unsplash.com/search/photos?page=1&query=";
 
-app.get("/", (req, res) => {
+const corsOptions = { origin: "https://mood-colors-api.herokuapp.com/search" };
+
+app.get("/", cors(corsOptions), (req, res) => {
   res.send("Mood colors api running");
 });
 
-app.get("/:search", (req, res) => {
+app.get("/:search", cors(corsOptions), (req, res) => {
   const search = req.params.search;
   const url = `${ENDPT + search}&client_id=${KEY}`;
   axios
@@ -25,7 +27,7 @@ app.get("/:search", (req, res) => {
     });
 });
 
-app.get("/triggerDownload/:download", (req, res) => {
+app.get("/triggerDownload/:download", cors(corsOptions), (req, res) => {
   const url = `${download}?client_id=${KEY}`;
   axios
     .get(url)
@@ -35,12 +37,12 @@ app.get("/triggerDownload/:download", (req, res) => {
 
 const port = process.env.PORT || 8080;
 
-app.use(
-  cors({
-    origin: "https://mood-colors.herokuapp.com/",
-    methods: "GET",
-  })
-);
+// app.use(
+//   cors({
+//     origin: "https://mood-colors.herokuapp.com/",
+//     methods: "GET",
+//   })
+// );
 
 app.listen(port, () => {
   console.log("Express server listening on port", port);
