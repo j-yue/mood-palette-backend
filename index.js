@@ -7,7 +7,7 @@ const cors = require("cors");
 const KEY = process.env.UNSPLASH_KEY;
 const ENDPT = "https://api.unsplash.com/search/photos?page=1&query=";
 
-const corsOptions = { origin: "https://mood-colors-api.herokuapp.com/search" };
+const corsOptions = { origin: "https://mood-colors-api.herokuapp.com/" };
 
 app.get("/", cors(corsOptions), (req, res) => {
   res.send("Mood colors api running");
