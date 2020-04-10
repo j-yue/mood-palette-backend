@@ -7,6 +7,10 @@ const cors = require("cors");
 const KEY = process.env.UNSPLASH_KEY;
 const ENDPT = "https://api.unsplash.com/search/photos?page=1&query=";
 
+app.get("/", (req, res) => {
+  res.send("Mood colors api running");
+});
+
 app.get("/:search", (req, res) => {
   const search = req.params.search;
   const url = `${ENDPT + search}&client_id=${KEY}`;
