@@ -23,7 +23,8 @@ app.get("/:search", (req, res) => {
     .get(url)
     .then((response) => {
       console.log(response.data);
-      res.send(response.data);
+      // res.send(response.data);
+      res.send({ header: req.header, data: data });
     })
     .catch((e) => {
       console.log(e);
