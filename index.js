@@ -1,14 +1,16 @@
 const express = require("express");
-// const app = express();
+const app = express();
 require("dotenv").config();
 const axios = require("axios");
 const cors = require("cors");
-const app = express().use("https://mood-colors-api.herokuapp.com/", cors());
+// const app = express().use("https://mood-colors-api.herokuapp.com/", cors());
 
 const KEY = process.env.UNSPLASH_KEY;
 const ENDPT = "https://api.unsplash.com/search/photos?page=1&query=";
 
-// const corsOptions = { origin: "https://mood-colors-api.herokuapp.com/" };
+const corsOptions = { origin: "https://mood-colors-api.herokuapp.com/" };
+
+app.use(cors(corsOptions));
 
 app.get("/", (req, res) => {
   res.send("Mood colors api running");
