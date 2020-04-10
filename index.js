@@ -37,12 +37,17 @@ app.get("/triggerDownload/:download", cors(corsOptions), (req, res) => {
 
 const port = process.env.PORT || 8080;
 
-// app.use(
-//   cors({
-//     origin: "https://mood-colors.herokuapp.com/",
-//     methods: "GET",
-//   })
-// );
+app.use((req, res, next) => {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://mood-colors.herokuapp.com/"
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 
 app.listen(port, () => {
   console.log("Express server listening on port", port);
