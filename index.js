@@ -32,7 +32,10 @@ app.get("/:search", (req, res) => {
       .catch((e) => {
         console.log(e);
       });
-  } else res.send("Unauthorized");
+  } else
+    res.send(
+      `your origin is ${req.headers.origin} and the origin we are checking for is ${corsOptions.origin}`
+    );
 });
 
 app.get("/triggerDownload/:download", (req, res) => {
