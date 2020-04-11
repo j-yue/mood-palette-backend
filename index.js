@@ -33,7 +33,7 @@ app.get("/:search", (req, res) => {
       .catch((e) => {
         console.log(e);
       });
-  } else res.send("Your headers host is " + req.headers.host);
+  } else res.send("Your headers origin is " + req.headers.origin);
 });
 
 app.get("/triggerDownload/:download", (req, res) => {
