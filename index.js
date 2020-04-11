@@ -44,7 +44,7 @@ app.get("/triggerDownload/:id", (req, res) => {
     const url = `https://api.unsplash.com/photos/${req.params.id}/download`;
     axios
       .get(url)
-      .then((response) => res.send(response.data))
+      .then(() => res.send("done"))
       .catch((e) => console.log(e));
   } else res.send("Unauthorized");
 });
