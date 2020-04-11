@@ -16,9 +16,8 @@ const checkHost = (host) => {
 };
 
 app.get("/", (req, res) => {
-  // res.send(`hostname is ${req.hostname}`);
   if (checkHost(req.hostname)) res.send("Mood colors API running");
-  else res.send("Unauthorized");
+  else res.send("Your hostnmae is " + req.hostname);
 });
 
 app.get("/:search", (req, res) => {
