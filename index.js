@@ -44,7 +44,7 @@ app.get("/triggerDownload/:download", (req, res) => {
     axios
       .get(url)
       .then((response) => res.send(response.data))
-      .catch((e) => console.log(e));
+      .catch((e) => console.log(e, "your download link is " + download));
   } else res.send("Unauthorized");
 });
 
