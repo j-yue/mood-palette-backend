@@ -11,20 +11,20 @@ const corsOptions = { origin: "https://mood-colors.herokuapp.com" };
 
 app.use(cors(corsOptions));
 
-const checkHost = (host) => {
-  return host == "mood-colors.herokuapp";
+const checkOrigin = (req) => {
+  return req.headers.origin == "mood-colors.herokuapp";
 };
 
 app.get("/", (req, res) => {
-  if (checkHost(req.hostname)) res.send("Mood colors API running");
-  else res.send("Your hostnmae is " + req.hostname);
+  if (checkOrigin(req.headers.origin)) res.send("Mood colors API running");
+  else res.send("Unauthorized");
 });
 
 app.get("/:search", (req, res) => {
-  if (checkHost(req.hostname)) {
+  if (checkOrigin(req.headers.origin)) {
     const search = req.params.search;
     const url = `${ENDPT + search}&client_id=${KEY}`;
-    console.log(req.hostname);
+    console.log(req.headers.origin);
     axios
       .get(url)
       .then((response) => {
@@ -33,11 +33,11 @@ app.get("/:search", (req, res) => {
       .catch((e) => {
         console.log(e);
       });
-  } else res.send("Your headers origin is " + req.headers.origin);
+  } else res.send("Unauthorized");
 });
 
 app.get("/triggerDownload/:download", (req, res) => {
-  if (checkHost(req.hostname)) {
+  if (checkOrigin(req.headers.origin)) {
     const url = `${download}?client_id=${KEY}`;
     axios
       .get(url)
