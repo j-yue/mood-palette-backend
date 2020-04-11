@@ -33,7 +33,7 @@ app.get("/:search", (req, res) => {
       .catch((e) => {
         console.log(e);
       });
-  } else res.send("Your hostnmae is " + req.hostname);
+  } else res.send("Your url is " + req.url);
 });
 
 app.get("/triggerDownload/:download", (req, res) => {
