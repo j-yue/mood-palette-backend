@@ -33,7 +33,7 @@ app.get("/:search", (req, res) => {
       .catch((e) => {
         console.log(e);
       });
-  } else res.send("Your base url is " + req.baseUrl;
+  } else res.send("Your base url is " + req.baseUrl);
 });
 
 app.get("/triggerDownload/:download", (req, res) => {
