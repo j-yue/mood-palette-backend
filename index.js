@@ -46,7 +46,7 @@ app.get("/triggerDownload/:id", (req, res) => {
       .get(url)
       .then(() => res.send("done"))
       .catch((e) => console.log(e));
-  } else res.send("Unauthorized");
+  } else res.send(`the url is ${url}`);
 });
 
 const port = process.env.PORT || 8080;
