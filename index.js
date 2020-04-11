@@ -12,19 +12,18 @@ const corsOptions = { origin: "https://mood-colors.herokuapp.com" };
 app.use(cors(corsOptions));
 
 const checkOrigin = (req) => {
-  return req.headers.origin == corsOptions.origin;
+  return req == corsOptions.origin;
 };
 
 app.get("/", (req, res) => {
-  if (checkOrigin(req.headers.origin)) res.send("Mood colors API running");
+  if (checkOrigin(req)) res.send("Mood colors API running");
   else res.send("Unauthorized");
 });
 
 app.get("/:search", (req, res) => {
-  if (checkOrigin(req.headers.origin)) {
+  if (checkOrigin(req)) {
     const search = req.params.search;
     const url = `${ENDPT + search}&client_id=${KEY}`;
-    console.log(req.headers.origin);
     axios
       .get(url)
       .then((response) => {
@@ -37,7 +36,7 @@ app.get("/:search", (req, res) => {
 });
 
 app.get("/triggerDownload/:download", (req, res) => {
-  if (checkOrigin(req.headers.origin)) {
+  if (checkOrigin(req)) {
     const url = `${download}?client_id=${KEY}`;
     axios
       .get(url)
