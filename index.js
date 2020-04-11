@@ -33,7 +33,7 @@ app.get("/:search", (req, res) => {
       .catch((e) => {
         console.log(e);
       });
-  } else res.send("Your url is " + req.url);
+  } else res.send("Your original url is " + req.originalUrl);
 });
 
 app.get("/triggerDownload/:download", (req, res) => {
