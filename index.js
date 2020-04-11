@@ -38,7 +38,7 @@ app.get("/:search", (req, res) => {
     );
 });
 
-app.get("/triggerDownload/:id", (req, res) => {
+app.get("/triggerDownload/:id", cors(corsOptions), (req, res) => {
   if (checkOrigin(req)) {
     // const url = `${download}?client_id=${KEY}`;
     const url = `https://api.unsplash.com/photos/${req.params.id}/download`;
