@@ -38,13 +38,14 @@ app.get("/:search", (req, res) => {
     );
 });
 
-app.get("/triggerDownload/:download", (req, res) => {
+app.get("/triggerDownload/:id", (req, res) => {
   if (checkOrigin(req)) {
-    const url = `${download}?client_id=${KEY}`;
+    // const url = `${download}?client_id=${KEY}`;
+    const url = `https://api.unsplash.com/photos/${id}/download`;
     axios
       .get(url)
       .then((response) => res.send(response.data))
-      .catch((e) => console.log(e, "your download link is " + download));
+      .catch((e) => console.log(e));
   } else res.send("Unauthorized");
 });
 
