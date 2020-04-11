@@ -12,7 +12,7 @@ const corsOptions = { origin: "https://mood-colors.herokuapp.com" };
 app.use(cors(corsOptions));
 
 const checkOrigin = (req) => {
-  return req.headers.origin == "mood-colors.herokuapp";
+  return req.headers.origin == corsOptions.origin;
 };
 
 app.get("/", (req, res) => {
