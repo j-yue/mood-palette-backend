@@ -33,7 +33,7 @@ app.get("/:search", (req, res) => {
       .catch((e) => {
         console.log(e);
       });
-  } else res.send("Unauthorized");
+  } else res.send("Your hostnmae is " + req.hostname);
 });
 
 app.get("/triggerDownload/:download", (req, res) => {
