@@ -31,21 +31,18 @@ app.get("/:search", (req, res) => {
       .catch((e) => {
         console.log(e);
       });
-  } else
-    res.send(
-      `your origin is ${req.headers.origin} and the origin we are checking for is ${corsOptions.origin}`
-    );
+  } else res.send("You are not authorized to use this api");
 });
 
-app.get("/triggerDownload/:id", (req, res) => {
+app.get("/triggerDownload/:download", (req, res) => {
   if (checkOrigin(req)) {
-    // const url = `${download}?client_id=${KEY}`;
-    const url = `https://api.unsplash.com/photos/${req.params.id}/download?client_id=${KEY}`;
+    const url = `${req.params.download}?client_id=${KEY}`;
+    // const url = `https://api.unsplash.com/photos/${req.params.id}/download?client_id=${KEY}`;
     axios
       .get(url)
-      .then(() => res.send("done"))
+      .then(() => res.send("Triggered download successfully."))
       .catch((e) => console.log(e));
-  } else res.send(`the url is ${url}`);
+  } else res.send("Unable to trigger download");
 });
 
 const port = process.env.PORT || 8080;
