@@ -7,7 +7,8 @@ const KEY = process.env.UNSPLASH_KEY;
 const ENDPT = "https://api.unsplash.com/search/photos?page=1&query=";
 
 const cors = require("cors");
-app.use(cors({ origin: "https://mood-colors.herokuapp.com" }));
+const corsOptions = { origin: "https://mood-colors.herokuapp.com" };
+app.use(cors(corsOptions));
 
 const checkOrigin = (req) => {
   return req.headers.origin == corsOptions.origin;
@@ -36,11 +37,6 @@ app.get("/:search", (req, res) => {
     );
 });
 
-<<<<<<< HEAD
-//https://api.unsplash.com/photos/LBI7cgq3pbM/download
-
-=======
->>>>>>> parent of 3645fb1... Test
 app.get("/triggerDownload/:id", (req, res) => {
   if (checkOrigin(req)) {
     // const url = `${download}?client_id=${KEY}`;
