@@ -40,7 +40,7 @@ app.get("/:search", (req, res) => {
 app.get("/triggerDownload/:id", (req, res) => {
   if (checkOrigin(req)) {
     // const url = `${download}?client_id=${KEY}`;
-    const url = `https://api.unsplash.com/photos/${req.params.id}/download&client_id=${KEY}`;
+    const url = `https://api.unsplash.com/photos/${req.params.id}/download?client_id=${KEY}`;
     axios
       .get(url)
       .then(() => res.send("done"))
