@@ -36,8 +36,11 @@ app.get("/:search", (req, res) => {
     );
 });
 
+<<<<<<< HEAD
 //https://api.unsplash.com/photos/LBI7cgq3pbM/download
 
+=======
+>>>>>>> parent of 3645fb1... Test
 app.get("/triggerDownload/:id", (req, res) => {
   if (checkOrigin(req)) {
     // const url = `${download}?client_id=${KEY}`;
