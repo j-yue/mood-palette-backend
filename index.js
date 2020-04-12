@@ -34,10 +34,9 @@ app.get("/:search", (req, res) => {
   } else res.send("You are not authorized to use this api");
 });
 
-app.get("/triggerDownload/:download", (req, res) => {
+app.get("/triggerDownload/:id", (req, res) => {
   if (checkOrigin(req)) {
-    const url = `${req.params.download}?client_id=${KEY}`;
-    // const url = `https://api.unsplash.com/photos/${req.params.id}/download?client_id=${KEY}`;
+    const url = `https://api.unsplash.com/photos/${req.params.id}/download?client_id=${KEY}`;
     axios
       .get(url)
       .then(() => res.send("Triggered download successfully."))
