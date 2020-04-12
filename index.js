@@ -2,14 +2,12 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const axios = require("axios");
-const cors = require("cors");
 
 const KEY = process.env.UNSPLASH_KEY;
 const ENDPT = "https://api.unsplash.com/search/photos?page=1&query=";
 
-const corsOptions = { origin: "https://mood-colors.herokuapp.com" };
-
-app.use(cors(corsOptions));
+const cors = require("cors");
+app.use(cors({ origin: "https://mood-colors.herokuapp.com" }));
 
 const checkOrigin = (req) => {
   return req.headers.origin == corsOptions.origin;
@@ -38,10 +36,12 @@ app.get("/:search", (req, res) => {
     );
 });
 
+//https://api.unsplash.com/photos/LBI7cgq3pbM/download
+
 app.get("/triggerDownload/:id", cors(corsOptions), (req, res) => {
   if (checkOrigin(req)) {
     // const url = `${download}?client_id=${KEY}`;
-    const url = `https://api.unsplash.com/photos/${req.params.id}/download`;
+    const url = `https://api.unsplash.com/photos/${req.params.id}/download&client_id=${KEY}`;
     axios
       .get(url)
       .then(() => res.send("done"))
